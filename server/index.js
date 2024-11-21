@@ -8,7 +8,6 @@ import chatRouter from './routes/chat.route.js';
 import messageRouter from './routes/message.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import path from 'path';
 
 // Load environment variables
 dotenv.config();
@@ -39,22 +38,7 @@ app.use('/api/v1/auth',authRouter);
 app.use('/api/v1/chats', chatRouter);
 app.use('/api/v1/messages', messageRouter);
 
-// DEPLOYMENT LOGIC
-const __dirname1 = path.resolve();
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname1, '../client/dist')));
 
-    // Fallback route to serve `index.html` for any unmatched routes
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname1, '../client/dist', 'index.html'));
-    });
-}
-else{
-    app.get("/",(req,res) => {
-        res.send("API is running successfully");
-    })
-}
-// DEPLOYMENT LOGIC
 
 
 // Global Error Handler
