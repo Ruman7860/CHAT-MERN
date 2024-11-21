@@ -39,6 +39,10 @@ app.use('/api/v1/chats', chatRouter);
 app.use('/api/v1/messages', messageRouter);
 
 
+app.get('/',(req,res)=>{
+    res.send("hello from server");
+});
+
 
 
 // Global Error Handler
